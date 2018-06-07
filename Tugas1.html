@@ -1,0 +1,82 @@
+
+<style>
+	#orang{
+		width: 110px;
+		height: 150px;
+		background: url(g1.png);
+		
+	}
+	#bola{
+		position: absolute;
+		width: 80px;
+		height: 80px;	
+		left: 600px;
+		top: 300px;
+		background: url(bola.jpg);
+		animation: bola .5s steps(8) infinite ;
+		
+	}
+	@keyframes bola{
+		0%{transform: 0 0px;}
+		100%{transform: -590 0px;}
+
+	}
+
+	@keyframes kanan{
+		0%{background-position: 0px 0px ; }
+		100%{background-position: -864px 0px ; }
+	}
+	@keyframes kiri{
+		0%{background-position: -864px 140px ;}
+		100%{background-position: 0px 140px ;}
+	}
+	
+
+</style>
+<div id="orang"></div>
+<div id="bola"></div>
+
+<script>
+	var orang=document.getElementById('orang');
+	var bola=document.getElementById('bola');
+	var jalan=0;
+	document.addEventListener('keydown',function(event){
+		var keyPress= String.fromCharCode(event.keyCode);
+		if (keyPress=="D")
+		{
+			jalan+=10;
+			orang.style.transform="translateX("+jalan+"px)";
+			orang.style.animation='kanan 0.5s steps(8)  infinite';
+			arah('kanan');
+			animasiJalan();
+		}else if (keyPress=="A")
+		{
+			jalan-=10;
+			orang.style.transform="translateX("+jalan+"px)";
+			orang.style.animation='kiri 0.5s steps(8)  infinite';
+			arah('kiri');
+			animasiJalan();
+		}
+
+	});
+
+	function arah(arah)
+	{
+		arahJ=arah;
+	}
+
+	document.addEventListener('keyup',function(event){
+		orang.style.animationPlayState="paused";
+	});
+	function animasiJalan(){
+		if (arahJ="kanan") {
+			orang.style.left = (karakter.offsetLeft += 3) + 'px';
+		}else if (arahJ="kiri") {
+			orang.style.left = (karakter.offsetLeft -= 3) + 'px';
+		}
+
+	}
+</script>
+
+
+
