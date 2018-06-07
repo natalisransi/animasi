@@ -23,5 +23,6 @@ while True:
         kecepatanx = -kecepatanx
     tk.update()
     time.sleep(0.001)
+print("Coba")
 
 tk.mainloop()
