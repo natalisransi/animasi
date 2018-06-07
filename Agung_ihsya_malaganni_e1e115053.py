@@ -1,59 +1,48 @@
-# Assuming Python 2.x
-# For Python 3.x support change print -> print(..) and Tkinter to tkinter
-from Tkinter import *
+from tkinter import *
 import time
-import math
+
+lebar = 600
+tinggi = 400
+
+tk = Tk()
+canvas = Canvas(tk, width=lebar, height=tinggi)
+tk.title("Gambar Bola Bergerak")
+
+canvas.pack()
+
+bola = canvas.create_oval(10, 10, 70, 70, fill="pink")
+bola2 = canvas.create_oval(10, 10, 70, 70, fill="green")
+
+kecepatanx = 10
+kecepatany = 20
+kecepatanx2 = 10
+kecepatany2 = 30
+while True:
+    canvas.move(bola, kecepatanx, kecepatany)
+    pos = canvas.coords(bola)
+    
+    if pos[3] >= tinggi or pos[1] <= 0:
+        kecepatany = -kecepatany
+    if pos[2] >= lebar or pos[1] <= 0:
+        kecepatanx = -kecepatanx
+    tk.update()
+    time.sleep(0.01)
+
+    canvas.move(bola2, kecepatanx2, kecepatany2)
+    pos2 = canvas.coords(bola2)
+    
+    if pos2[3] >= tinggi or pos2[1] <= 0:
+        kecepatany2 = -kecepatany2
+    if pos2[2] >= lebar or pos2[1] <= 0:
+        kecepatanx2 = -kecepatanx2
+       
+    tk.update()
+    time.sleep(0.001)
+    
 
 
-class alien2(object):
 
-     lWidth = 500
-     lHeight = 600
-
-     posX = 200
-     posY = 150
-     
-     def __init__(self):
-
-        
-        self.root = Tk()
-        self.canvas = Canvas(self.root, width=self.lWidth, height = self.lHeight)
-        self.canvas.pack()
-        self.alien2 = self.canvas.create_polygon(self.posX+5, self.posY+120, self.posX+5, self.posY+100, outline='black')
-        self.canvas.pack()
-        self.root.after(0, self.animation)
-        self.root.mainloop()
-        
-
-     def animation(self):
-        x = -15.4
-        xmove = 0.7
-        y = 0
-        coba = 0
-
-        run = True
-        while run:
-            ymove = y
-            y = x*x  - 2*x + 10
-            yy = y - ymove
-            x = x + xmove
-            
-            time.sleep(0.010)
-            self.canvas.move(self.alien2, xmove, yy)
-            self.canvas.update()
-
-            if y == 0:
-                print str(xmove)+" "+str(yy)+""
-                
-                coba = coba +1
-                
-            else:
-                print ""+str(coba)+" - y : "+str(y)+" - x : "+str(x)
-            if coba == 2:
-                run = False
-
-            if y + 10 >= self.lHeight - self.posY:
-                x = -10
+    
 
 
-alien2()
+tk.mainloop()
