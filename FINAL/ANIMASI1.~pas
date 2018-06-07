@@ -1,0 +1,89 @@
+unit ANIMASI1;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, ExtCtrls, StdCtrls;
+
+type
+  TForm1 = class(TForm)
+    Panel1: TPanel;
+    Timer1: TTimer;
+    Button1: TButton;
+    Button2: TButton;
+    matahari: TShape;
+    orbit1: TShape;
+    orbit2: TShape;
+    planet1: TShape;
+    planet2: TShape;
+    Button3: TButton;
+    orbit3: TShape;
+    planet3: TShape;
+    procedure Timer1Timer(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+    procedure Button3Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+  theta,d,c:real;
+  constanta:integer;
+
+implementation
+
+{$R *.dfm}
+//timer
+procedure TForm1.Timer1Timer(Sender: TObject);
+  var x1,x2,y1,y2,x3,y3:real;
+begin
+  if(theta<=(2*d)) then
+  begin
+  //koordinat pergerakan dan kecepatan planet berdasarkan orbit
+  x3:=((orbit3.Width)/2)+(orbit3.Left)+((orbit3.Width)/2)*cos(1*theta);
+  y3:=((orbit3.Height)/2)+(orbit3.Top)-((orbit3.Height)/2)*sin(1*theta);
+  x2:=((orbit2.Width)/2)+(orbit2.Left)+((orbit2.Width)/2)*sin(2*theta);
+  y2:=((orbit2.Height)/2)+(orbit2.Top)-((orbit2.Height)/2)*cos(2*theta);
+  x1:=((orbit1.Width)/2)+(orbit1.Left)+((orbit1.Width)/2)*cos(3*theta);
+  y1:=((orbit1.Height)/2)+(orbit1.Top)-((orbit1.Height)/2)*sin(3*theta);
+
+  planet2.Left:=trunc(x2)-constanta;
+  planet2.Top:=trunc(y2)-constanta;
+  planet1.Left:=trunc(x1)-constanta;
+  planet1.Top:=trunc(y1)-constanta;
+   planet3.Left:=trunc(x3)-constanta;
+  planet3.Top:=trunc(y3)-constanta;
+  theta:=theta+c;
+  end;
+  if(theta>=2*d) then theta:=2.0;
+end;
+//pembuatan button dan fungsinya
+//button mulai
+procedure TForm1.Button1Click(Sender: TObject);
+begin
+   constanta:=9;
+   planet1.Visible:=True;
+   planet2.Visible:=True;
+   planet3.Visible:=True;
+   Timer1.Enabled:=True;
+   theta:=2.0;
+   c:=1/100;
+   d:=2*PI;
+end;
+//button berhenti
+procedure TForm1.Button2Click(Sender: TObject);
+begin
+Timer1.Enabled:=False;
+end;
+//button lanjut
+procedure TForm1.Button3Click(Sender: TObject);
+begin
+Timer1.Enabled:=True;
+end;
+//membuat lingkaran orbit dan planet
+end.
