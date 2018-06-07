@@ -1,0 +1,61 @@
+<script type="text/javascript">
+var context;
+var dx= 4;
+var dy=4;
+var y=150;
+var x=10;
+function draw(){
+	context= myCanvas.getContext('2d');
+	context.clearRect(0,0,500,500);
+	context.beginPath();
+	context.fillStyle="#0000ff";
+	context.arc(x,y,20,0,Math.PI*2,true);
+	context.closePath();
+	context.fill();
+	if( x<0 || x>500-20)
+	dx=-dx;
+	
+
+	if( y<0 || y>500-20)
+		dy=-dy;
+		x+=dx;
+		y+=dy;
+	}
+setInterval(draw,1000/60); 
+</script>
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+<!--
+body 
+{ 
+  background-color:#ededed; 
+}
+
+
+  #container { width:600px; 
+  margin:0 auto; 
+  }
+  
+
+  #myCanvas { 
+  background:#fff; 
+  border:1px solid #cbcbcb; 
+  }
+  
+
+
+-->
+</style>
+</head>
+<body>
+<div id="container">
+	
+<canvas id="myCanvas" width="500" height="500"></canvas>
+
+</div>
+
+</body>
+</html>
