@@ -11,14 +11,14 @@ tk.title("Gambar Bola Banyak Bergerak")
 canvas.pack()
 
 bola = canvas.create_oval(10, 10, 70, 70, fill="yellow")
-bola2 = canvas.create_oval(10, 10, 70, 70, fill="red")
-bola3 = canvas.create_oval(10, 10, 70, 70, fill="blue")
-kecepatanx = 4
-kecepatany = 1
-kecepatanx = 3
-kecepatany = 2
-kecepatanx = 3
-kecepatany = 1
+bola2 = canvas.create_oval(10, 10, 70, 70, fill="orange")
+bola3 = canvas.create_oval(10, 10, 70, 70, fill="black")
+kecepatanx = 5
+kecepatany = 5
+kecepatanx = 5
+kecepatany = 5
+kecepatanx = 5
+kecepatany = 5
 
 while True:
     canvas.move(bola, kecepatanx, kecepatany)

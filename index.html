@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <style>
@@ -44,6 +45,88 @@ function jlnbola() {
       elem.style.left = xx + 'px'; 
       x = x + 0.5;
       y = 50*Math.sin(x);
+    }
+  }
+}
+</script>
+</body>
+</html>
+=======
+<!DOCTYPE html>
+<html>
+<style>
+#container {
+  width: 1200px;
+  height: 400px;
+  position: relative
+}
+#animate, #animate2{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  position: absolute;
+}
+
+#animate2{
+	float: right;
+	position: relative;
+}
+</style>
+<body>
+
+<p>
+<body>
+    <form>
+      <center><h3>Animasi Komputer "Gelombang Transversal"</h3>
+      <input type="button" value="Mulai" onclick="myMove();" /></center>
+  </form>
+    </body>
+
+</p> 
+
+<div id ="container" >
+<br>
+<br>
+<br>
+<div id ="animate"><div id="anime"><img src="pink.png"></div></div>
+<div id ="animate2"><div id="anime2"><img src="EE.png"></div></div>
+</div>
+
+<script>
+
+function myMove() {
+  var elem = document.getElementById("animate");   
+  var pos = 0;
+  var x = 0;
+  var y = 0; 
+  var id = setInterval(frame, 100);
+  function frame(){
+    if (pos == 30) {
+      clearInterval(id);
+    } else {
+      pos++;
+      elem.style.top = (200 + y) + 'px'; 
+      elem.style.left = x + 'px'; 
+      x = x + 45;
+      y = 100*Math.sin(Math.cos(x));
+    }
+  }
+  
+  var elem2 = document.getElementById("animate2");   
+  var pos2 = 30;
+  var x2 = 0;
+  var y2 = 0; 
+  elem2.style.position = 'absolute'; 
+  var id2 = setInterval(frame2, 100);
+  function frame2(){
+    if (pos2 == 0) {
+      clearInterval(id2);
+    } else {
+      pos2--;
+      elem2.style.top = (200 + y2) + 'px'; 
+      elem2.style.right = x2 + 'px'; 
+      x2 = x2 + 45;
+      y2 = 100*Math.sin(Math.cos(x2));
     }
   }
 }
