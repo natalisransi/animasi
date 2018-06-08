@@ -1,0 +1,138 @@
+<!--
+
+	-->
+<style>
+	#karakter{
+		position: absolute;
+		width: 190px;
+		height: 200px;	
+		left: 300px;
+		background: url(g1.png);
+		background-position: 0px 384px;
+		
+	}
+	#makanan{
+		position: absolute;
+		width: 80px;
+		height: 80px;	
+		left: 600px;
+		top: 300px;
+		background: url(bola.jpg);
+		animation: makanan .5s steps(9) paused  ;
+		
+	}
+
+	@keyframes makanan{
+		0%{background-position: 0 0px;}
+		100%{background-position: -590 0px;}
+
+	}
+	
+	@keyframes kanan{
+		0%{background-position: -576 384px;}
+		100%{background-position: 0px 383px;}
+		
+	}
+	@keyframes kiri{
+		0%{background-position: -576 576px;}
+		100%{background-position: 0px 576px;}
+		
+	}
+	@keyframes atas{
+		0%{background-position: -576px 192px;}
+		100%{background-position: 0px 192px;}
+		
+	}
+	@keyframes bawah{
+		0%{background-position: -576px 0px;}
+		100%{background-position: 0px 0px;}
+		
+	}
+	
+</style>
+<div id="karakter"></div>
+<div id="makanan"></div>
+
+<script>
+	var kTop, kLeft, kWidth, kHeight, mTop, meft, mHeight, mWidth;
+	var makanan=document.getElementById('makanan');
+	var karakter= document.getElementById('karakter');
+
+	
+	
+	document.addEventListener('keydown',function(event){
+		var keyPress= String.fromCharCode(event.keyCode);
+		if (keyPress=="D")
+		{
+			karakter.style.animation='kanan 0.5s steps(3)  infinite';
+			arah('kanan');
+			animasiJalan();
+			cekMakan();
+			
+		}else if (keyPress=="A")
+		{
+			karakter.style.animation='kiri 0.5s steps(3)  infinite';
+			arah('kiri');
+			animasiJalan();
+			cekMakan();
+			
+		}else if (keyPress=="W")
+		{
+			karakter.style.animation='atas 0.5s steps(3)  infinite';
+			arah('atas');
+			animasiJalan();
+			cekMakan();
+		}else if (keyPress=="S")
+		{
+			karakter.style.animation='bawah 0.5s steps(3)  infinite';
+			arah('bawah');
+			animasiJalan();
+			cekMakan();
+		}
+
+
+	});
+
+	function arah(arah)
+	{
+		arahJ=arah;
+	}
+
+	document.addEventListener('keyup',function(event){
+		karakter.style.animationPlayState="paused";
+	});
+
+	function cekMakan()
+	{
+		kTop=karakter.offsetTop;
+		kLeft=karakter.offsetLeft;
+		kWidth=karakter.offsetWidth;
+		kHeight=karakter.offsetHeight;
+
+		mTop=makanan.offsetTop;
+		mLeft=makanan.offsetLeft;
+		mWidth=makanan.offsetWidth;
+		mHeight=makanan.offsetHeight;
+
+		if ((kLeft+kWidth)>mLeft && kLeft<(mLeft+mWidth) && (kTop+kHeight)>mTop && kTop<(mTop+mHeight))
+		{
+			document.body.removeChild(makanan);
+		}
+	}
+
+	function animasiJalan()
+	{
+		if (arahJ=="kanan") {
+			karakter.style.left= (karakter.offsetLeft += 3) + "px";
+		}else if (arahJ=="kiri") {
+			karakter.style.left= (karakter.offsetLeft -= 3) + "px";
+		}else if (arahJ=="atas") {
+			karakter.style.top= (karakter.offsetTop -= 3) + "px";
+		}else if (arahJ=="bawah") {
+			karakter.style.top= (karakter.offsetTop += 3) + "px";
+		}
+		
+		
+	}
+	
+</script>
