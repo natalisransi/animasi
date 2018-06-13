@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<style>
+body{
+
+margin: 0 auto;
+padding: 0;
+}
+
+
+
+.venus {
+  width: 55px;
+  position: absolute;
+}
+
+
+.bumi {
+  width: 50px;
+  position: absolute;
+}
+
+.mercury
+{
+	width: 40px;
+	position: absolute;
+}
+
+.mars
+{
+	width: 45px;
+	position: absolute;
+}
+
+.jupiter
+{
+	width: 120px;
+	position: absolute;
+}
+
+.saturnus{
+	width: 150px;
+	position: absolute;
+}
+
+.uranus{
+	width: 80px;
+	position: absolute;
+}
+
+.neptune{
+	width: 82px;
+	position: absolute;
+}
+.matahari {
+  width: 200px;
+ left: 1000px;
+ top:530px;
+  position: absolute;
+}
+
+.latar{
+	position: absolute;
+	width: 2350px;
+
+}
+</style>
+<body>
+
+<p>
+
+</p>
+<img class="latar" src="back2.jpg">
+<div id ="">
+
+<div id ="sempbilan2"></div>
+<div id ="delapan2"></div>
+<div id ="tujuh2"></div>
+<div id ="enam2"></div>
+<div id ="lima2"></div>
+<div id ="empat2"></div>
+<div id ="tiga2"></div>
+<div id ="dua2"></div>
+<div id ="satu2"></div>
+<div id ="nol"></div>
+<div id ="satu"></div>
+<div id ="dua"></div>
+<div id ="tiga"></div>
+<div id ="empat"></div>
+<div id ="lima"></div>
+<div id ="enam"></div>
+<div id ="tujuh"></div>
+<div id ="delapan"></div>
+<div id ="sempbilan"></div>
+
+
+
+</div>
+<div id="y"></div>
+<img class="latar" src="efek.png">
+<!--<button style="position: absolute;" onclick="">Click Me</button> -->
+<script>
+
+var delapan2 = document.getElementById("delapan2");
+var tujuh2 = document.getElementById("tujuh2");
+var enam2 = document.getElementById("enam2");
+var lima2 = document.getElementById("lima2");
+var empat2 = document.getElementById("empat2");
+var tiga2 = document.getElementById("tiga2");
+var dua2 = document.getElementById("dua2");
+var satu2 = document.getElementById("satu2");
+var nol = document.getElementById("nol");
+var satu = document.getElementById("satu");
+var dua = document.getElementById("dua");
+var tiga = document.getElementById("tiga");
+var empat = document.getElementById("empat");
+var lima = document.getElementById("lima");
+var enam = document.getElementById("enam");
+var tujuh = document.getElementById("tujuh");
+var delapan = document.getElementById("delapan");
+
+myMove();
+function move(xubah, yubah, xxgerakan, xgerakan, ytengah, xtengah, lama, batas, elem, nama, planet)
+{
+  $("#"+nama).hide();
+  //var elem = document.getElementById("myAnimation"); 
+  
+  
+  var pos = 0;
+  var xawal = xubah;
+  var x = xawal;
+  var xx = xawal;
+  var yawal = x*x -16;
+  var yawal2 = -x*x -16;
+  var xxgerak = xxgerakan;
+  var xgerak =xgerakan;
+  var y =0;
+  
+  var yakhir = 0;
+  
+  var gerak = true;
+  
+  var id = setInterval(frame, lama);
+  
+  function frame() {
+    if (pos == batas) {
+      clearInterval(id);
+    } else {
+      pos++; 
+	  
+	  if(y == -16)
+	  {
+		if(gerak)
+		{
+				
+				elem = document.getElementsByClassName(planet)[1];
+				$(document).ready(function(){
+						$("#"+nama+"2").hide();
+						$("#"+nama).show();
+				});
+			
+		}
+		else
+		{
+			
+				elem = document.getElementsByClassName(planet)[0];
+				$(document).ready(function(){
+						$("#"+nama).hide();
+						$("#"+nama+"2").show();
+				});
+			
+		}
+	  
+	  }
+	  
+	  
+	  if(y > yawal)
+	  {
+		yakhir = y;
+		
+		console.log("kiri "+yawal2);
+		
+			gerak = false;
+			x += -0.2;
+		
+	  } else if(y < yawal2)
+	  {
+		gerak = true;
+		x =xawal;
+		xx = xawal
+		console.log("kanan "+yawal);
+	  }
+	  
+	  
+	  if(gerak)
+	  {
+		xxgerak = xxgerakan;
+		xgerak = xgerakan;
+		y = x*x -16;
+		elem.style.top = xx +xtengah+ 'px'; 
+		elem.style.left = (y+ ytengah)  + 'px';
+		
+	  }
+	  else
+	  {
+		xxgerak = -xxgerakan;
+		xgerak = -xgerakan;
+		y = -x*x -16;
+		elem.style.top = xx +xtengah+ 'px'; 
+		elem.style.left =(y+yubah + ytengah) + 'px';
+	  }
+	  
+	  console.log("y = "+y+" - x = "+xx);
+       x += xgerak;
+	  xx += xxgerak;
+    }
+  }
+
+}
+
+function myMove() {
+	//-20 => 800
+	//-17 => 450
+	//-25 => 1250
+	
+	//var xxgerakan = 0.09;
+	//var xgerakan = 0.05;
+
+delapan2.innerHTML = "<img class='neptune' src='8.Neptune.png' />";
+tujuh2.innerHTML = "<img class='uranus' src='7.Uranus.png' />";
+enam2.innerHTML = "<img class='saturnus' src='6.saturnus.png' />";
+lima2.innerHTML = "<img class='jupiter' src='5.jupiter.png' />";	
+empat2.innerHTML = "<img class='mars' src='4.mars.png' />";	
+tiga2.innerHTML = "<img class='bumi' src='3.bumi.png' />";
+dua2.innerHTML = "<img class='venus' src='2.venus.png' />";
+satu2.innerHTML = "<img class='mercury' src='1.Mercury.png' />";	
+nol.innerHTML = "<img src='matahari.png' class='matahari'/>";	
+satu.innerHTML = "<img class='mercury' src='1.Mercury.png' />";
+dua.innerHTML = "<img class='venus' src='2.venus.png' />";
+tiga.innerHTML = "<img class='bumi' src='3.bumi.png' />";
+empat.innerHTML = "<img class='mars' src='4.mars.png' />";
+lima.innerHTML = "<img class='jupiter' src='5.jupiter.png' />";
+enam.innerHTML = "<img class='saturnus' src='6.saturnus.png' />";
+tujuh.innerHTML = "<img class='uranus' src='7.Uranus.png' />";
+delapan.innerHTML = "<img class='neptune' src='8.Neptune.png' />";
+
+var lama = 100000;
+var sleep = 0;
+
+var tinggi = 550;
+	move(-12, 290, 0.09, 0.05, 950, tinggi+70, sleep, lama, document.getElementsByClassName("mercury")[0], "satu", "mercury");
+	move(-15, 450, 0.09, 0.05, 890, tinggi+70, sleep, lama, document.getElementsByClassName("venus")[0], "dua", "venus");
+	move(-17, 580, 0.12, 0.05, 800, tinggi+65, sleep, lama, document.getElementsByClassName("bumi")[0], "tiga", "bumi");
+	move(-20, 800, 0.12, 0.05, 750, tinggi+65, sleep, lama, document.getElementsByClassName("mars")[0], "empat", "mars");
+	move(-23, 1055, 0.15, 0.05, 620, tinggi, sleep, lama, document.getElementsByClassName("jupiter")[0], "lima", "jupiter");
+	move(-25, 1250, 0.15, 0.05, 530, tinggi, sleep, lama, document.getElementsByClassName("saturnus")[0], "enam", "saturnus");
+	move(-28, 1570, 0.18, 0.05, 380, tinggi, sleep, lama, document.getElementsByClassName("uranus")[0], "tujuh", "uranus");
+	move(-30, 1800, 0.18, 0.05, 250, tinggi, sleep, lama, document.getElementsByClassName("neptune")[0], "delapan", "neptune");
+	//move(-35, 2430, 0.15, 0.05, -80, tinggi, sleep, lama, document.getElementsByClassName("neptune")[0], "delapan", "neptune");
+}
+</script>
+
+</body>
+</html>
