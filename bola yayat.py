@@ -29,6 +29,8 @@ while True:
         kecepatanx = -kecepatanx
     if pos1[3] >= tinggi or pos1[1] <= 0:
         kecepatany1 = -kecepatany1
+    if pos1[2] >= lebar or pos1[0] <= 0:
+        kecepatanx1 = -kecepatanx1
     
     tk.update()
     time.sleep(0.001)
