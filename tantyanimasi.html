@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<style>
+#container {
+  width: 500px;
+  height: 500px;
+  position: relative;
+  background: grey;
+
+  }
+
+#animasi {
+  width: 90px;
+  height: 90px;
+  position: absolute;
+  background-color: black;
+}
+
+
+#animate {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  background-color: yellow;
+}
+
+
+</style>
+<body>
+
+<p>
+<button type="submit" onclick="myMove()">Klik</button>
+</p> 
+
+<div id ="container">
+<div id ="animasi"></div>
+<div id="animate"></div>
+
+</div>
+<script>
+function myMove() {
+  var elem = document.getElementById("animasi");   
+  var elem2 = document.getElementById("animate");   
+  var pos = 0;
+  var x = 0;
+  var y = 0;
+  var gerak= 5;
+  var posg= 1;
+  var id = setInterval(frame, 100); //kecepatan
+  function frame() {
+    if (pos == 790) { //posisi berhenti
+      clearInterval(id);
+    } else {
+      pos=pos+posg;
+      elem.style.top = (100+y) + 'px'; 
+      elem.style.right = x + 'px'; 
+
+      elem2.style.top = x + 'px'; 
+      elem2.style.right = (100+y) + 'px'; 
+
+      x= x + gerak;
+
+      if(pos == 80)
+      {
+        gerak = -5;
+        posg = -1;
+
+      } else if(pos == 0)
+      {
+        gerak = 5;
+        posg = 1;
+      }
+
+      y= 25*Math.sin(2*Math.PI-x);
+    
+    }
+  }
+}
+</script>
+
+</body>
+</html>

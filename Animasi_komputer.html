@@ -1,0 +1,71 @@
+<html lang="en">
+<head> 
+ 
+ <style type="text/css"> 
+ canvas {
+ background:#CC9900;
+ }
+ </style>
+
+</head>
+<!--BACKGROUND-->
+<body bgcolor="#FFFFFF">
+
+ <div>
+ <canvas id="canvas" width="400" height="300"></canvas> 
+ </div> 
+
+ <script type="text/javascript" > 
+ 
+ function create(a,x,y,r) {//bola
+	 a.beginPath();
+	 a.arc(x,y,r,0,Math.PI*2,true);
+	 a.fillStyle='blue';
+	 a.fill();
+	 a.stroke();
+	 a.closePath();
+ }
+ 
+ 
+ function animation() {
+	 clear(cv);
+	 create(cv,x,y,10);
+	 move();
+ }
+ 
+ function animate() {
+	 cv = document.getElementById('canvas').getContext('2d');
+	 if (cv == 'undefined') alert('canvas failed');        
+	 return setInterval (animation,50);
+ }
+ animate();
+ 
+  
+ function clear(a) {
+	a.clearRect(0,0,w,h);
+ }
+ 
+ var x = 10;
+ var y = 10;
+ var dx = 10;//kecepatan
+ var dy = 20;//kecepatan
+ var w = 500;//samping
+ var h = 300;//tinggi
+ 
+ function move() {
+ 
+  y += dy; 
+  x += dx;
+  
+	 if (y > h || y < 0) {
+	 dy = -dy;
+	 }
+	 if (x > w || x < 0) {
+	 dx = -dx;
+	 }
+ }
+ 
+ </script>
+ <div id="add"></div>
+</body>
+</html>
