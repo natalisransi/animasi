@@ -22,6 +22,7 @@
     </body>
 </p> 
 
+<div id ="animate"><div id="anime"><img src="vb.jpg"></div></div>
 <div id ="animate"><div id="anime"></div></div>
 </div>
 
@@ -45,6 +46,33 @@ function jlnbola() {
       elem.style.left = xx + 'px'; 
       x = x + 0.5;
       y = 50*Math.sin(x);
+      if (xx==1500) {
+        jlnbola1();
+      }
+    }
+  }
+}
+function jlnbola1() {
+  var elem = document.getElementById("animate");   
+  var pos = 0;
+  var x = 0;
+  var xx = 1500;
+  var y = 0; 
+  var id = setInterval(frame, 50);
+  function frame(){
+    if (pos == 77) {
+      clearInterval(id);
+    } 
+    else {
+      pos++;
+      xx-=20;
+      elem.style.top = (200 + y) + 'px'; 
+      elem.style.left = xx + 'px'; 
+      x = x + 0.5;
+      y = 50*Math.sin(x);
+      if (xx==0) {
+        jlnbola();
+      }
     }
   }
 }
@@ -127,6 +155,7 @@ function myMove() {
       elem2.style.right = x2 + 'px'; 
       x2 = x2 + 45;
       y2 = 100*Math.sin(Math.cos(x2));
+
     }
   }
 }
