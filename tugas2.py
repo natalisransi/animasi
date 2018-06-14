@@ -1,70 +1,50 @@
-
-import time
-import math
 from Tkinter import *
+import time
 
+lebar = 600
+tinggi = 400
 
-class obj2(object):
+tk = Tk()
+canvas = Canvas(tk, width=lebar, height=tinggi)
+tk.title("Gambar Bola Bergerak")
 
-     #ukuran layout animasi
-     lWidth = 500
-     lHeight = 600
+canvas.pack()
+#membuat bola
+bola = canvas.create_oval(10, 10, 70, 70, fill="orange")
+bola2 = canvas.create_oval(10, 10, 70, 70, fill="blue")
+bola3 = canvas.create_oval(10, 10, 70, 70, fill="red")
 
-     #posisi objek
-     posX = 100
-     posY = 150
-     
-     def __init__(self):
-        self.root = Tk()
-        self.canvas = Canvas(self.root, width=self.lWidth, height = self.lHeight) #membuat layout
-        self.canvas.pack()
-        self.obj1 = self.canvas.create_oval(2, 960, 42, 1000, outline='white', fill='blue')
-        self.obj2 = self.canvas.create_oval(self.posX+0, self.posY+0, self.posX+20, self.posY+20, outline='white', fill='black') #membuat objek
-        self.canvas.pack()
-        self.root.after(0, self.animation)
-        self.root.mainloop()
-        
+#mengatur kecepatan bola
+kecepatanx = 4
+kecepatany = 5
+kecepatanx1 = 2
+kecepatany1 = 3
+kecepatanx2 = 3
+kecepatany2 = 4
 
-     def animation(self):
-        x = -15
-        xhasil = 0.9 #kecepatan pindah objek
-        y = 1
-        coba = 0
-        majuundur = True
-        jalan = True #menjalankan animasi/objek
-        pan = 0
-        while jalan:
-            ylama = y
-            y = x*x  - 10*x + 25 #persamaan kuadrat
-                           
-            yhasil = y - ylama
-            x = x + xhasil
-            
-            time.sleep(0.00001)
-            self.canvas.move(self.obj2, xhasil, yhasil)
-            self.canvas.move(self.obj1, xhasil, yhasil)
-            self.canvas.update()
-            
-            print("-y "+str(y)+"-x "+str(x))
+#melooping bola dengan menggunakan kecepatan x dan y
+while True:
+    canvas.move(bola, kecepatanx, kecepatany)
+    canvas.move(bola2, kecepatanx1, kecepatany1)
+    canvas.move(bola3, kecepatanx2, kecepatany2)
+    pos = canvas.coords(bola)
+    pos2 = canvas.coords(bola2)
+    pos3 = canvas.coords(bola3)
+    if pos3[3] >= tinggi or pos3[1] <= 0:
+        kecepatany2 = -kecepatany2
+    if pos3[2] >= lebar or pos3[0] <= 0:
+        kecepatanx2 = -kecepatanx2
+    
+    if pos2[3] >= tinggi or pos2[1] <= 0:
+        kecepatany1 = -kecepatany1
+    if pos2[2] >= lebar or pos2[0] <= 0:
+        kecepatanx1 = -kecepatanx1
+    
+    if pos[3] >= tinggi or pos[1] <= 0:
+        kecepatany = -kecepatany
+    if pos[2] >= lebar or pos[0] <= 0:
+        kecepatanx = -kecepatanx
+    tk.update()
+    time.sleep(0.001)
 
-            if pan == 3:
-                 maju = False
-            elif pan == 0:
-                 maju= True
-            
-            if maju:
-                 xhasil = 0.3
-                 if y + 40 >= self.lHeight - self.posY: #membuat luping untuk objek memantul
-                     x = -15
-                     pan +=1
-            else:
-                 xhasil = -0.3
-                 if  x <= -15:
-                      x=25
-                      pan -=1
-                      
-            
-                 
-
-
-obj2()
+tk.mainloop()
