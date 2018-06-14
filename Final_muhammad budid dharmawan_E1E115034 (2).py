@@ -18,8 +18,9 @@ class budi2(object):
         self.root = Tk()
         self.canvas = Canvas(self.root, width=self.lWidth, height = self.lHeight) #membuat layout
         self.canvas.pack()
-        self.budi1 = self.canvas.create_oval(self.posX+0, self.posY+0, self.posX+50, self.posY+50, outline='white', fill='blue') #membuat objek
-        self.budi2 = self.canvas.create_oval(self.posX+0, self.posY+0, self.posX+20, self.posY+20, outline='white', fill='black') #membuat objek
+        #membuat objek
+        self.budi1 = self.canvas.create_oval(self.posX+0, self.posY+0, self.posX+50, self.posY+50, outline='white', fill='blue') 
+        self.budi2 = self.canvas.create_oval(self.posX+0, self.posY+0, self.posX+20, self.posY+20, outline='white', fill='black')
         self.canvas.pack()
         self.root.after(0, self.animation)
         self.root.mainloop()
@@ -57,6 +58,7 @@ class budi2(object):
                  if y + 40 >= self.lHeight - self.posY: #membuat luping untuk objek memantul
                      x = -15
                      pan +=1
+            #mengembalikan pantulan objek
             else:
                  xhasil = -0.3
                  if  x <= -15:
