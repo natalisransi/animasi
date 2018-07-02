@@ -1,0 +1,115 @@
+<script type="text/javascript">
+var dx= 4;
+var dy=4;
+var y=150;
+var x=70;
+var a=310;
+var b=100;
+var da= 4;
+var db=4;
+var p=250;
+var q=460;
+var dp= 4;
+var dq=4;
+function draw(){
+	context= myCanvas.getContext('2d');
+	context2= myCanvas.getContext('2d');
+	context3= myCanvas.getContext('2d');
+	
+	context.clearRect(0,0,500,500);
+	
+	context.beginPath();
+	context.fillStyle="#0000ff";
+	context.arc(x,y,20,0,Math.PI*2,true);
+	context.closePath();
+	context.fill();
+	
+	context2.fillStyle = "#1fd648";
+        context2.beginPath();
+		context2.arc(a, b, 20, 0, 2*Math.PI, true);
+        context2.closePath();
+        context2.fill();
+		
+	context3.fillStyle = "#ff0202";
+        context3.beginPath();
+		context3.arc(p, q, 20, 0, 2*Math.PI, true);
+        context3.closePath();
+        context3.fill();
+
+	if( x<0+20  || x>500-20)
+	dx=-dx;
+	
+
+	if( y<0+20 || y>500-20) 
+	{
+		dy=-dy;
+	}
+		x+=dx;
+		y+=dy;
+		
+	if( a<0+20 || a>500-20)
+	da=-da;
+	
+
+	if( b<0+20 || b>500-20)
+	{
+		db=-db;
+	}
+		a-=da;
+		b+=db;
+		
+	if( p<0+20 || p>500-20)
+	dp=-dp;
+	
+
+	if( q<0+20 || q>500-20)
+	{
+		dq=-dq;
+	}
+		p-=dp;
+		q+=dq;
+		
+	}
+	
+	
+		
+	
+setInterval(draw,1000/60); 
+
+</script>
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+<!--
+body 
+{ 
+  background-color:#ededed; 
+}
+
+
+  #container { width:600px; 
+  margin:0 auto; 
+  }
+  
+
+  #myCanvas { 
+  background:#fff; 
+  border:1px solid #cbcbcb; 
+  }
+  
+
+
+-->
+</style>
+</head>
+<body>
+<div id="container">
+	
+<canvas id="myCanvas" width="500" height="500"></canvas>
+
+</div>
+
+</body>
+</html>
