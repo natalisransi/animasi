@@ -1,0 +1,41 @@
+from tkinter import *
+import time
+
+lebar = 600
+tinggi = 400
+
+tk = Tk()
+canvas = Canvas(tk, width=lebar, height=tinggi)
+tk.title("Gambar Bola Banyak Bergerak")
+
+canvas.pack()
+
+bola = canvas.create_oval(10, 10, 70, 70, fill="blue")
+bola2 = canvas.create_oval(10, 10, 70, 70, fill="red")
+kecepatanx = 8
+kecepatany = 5
+
+kecepatanx2 = 3
+kecepatany2 = 7
+
+while True:
+    canvas.move(bola, kecepatanx, kecepatany)
+    pos = canvas.coords(bola)
+    if pos[3] >= tinggi or pos[1] <= 0:
+        kecepatany = -kecepatany
+    if pos[2] >= lebar or pos[0] <= 0:
+        kecepatanx = -kecepatanx
+    tk.update()
+    time.sleep(0.04)
+
+    canvas.move(bola2, kecepatanx2, kecepatany2)
+    pos = canvas.coords(bola2)
+    if pos[3] >= tinggi or pos[1] <= 0:
+        kecepatany2 = -kecepatany2
+    if pos[2] >= lebar or pos[0] <= 0:
+        kecepatanx2 = -kecepatanx2
+    tk.update()
+    time.sleep(0.01)
+
+
+tk.mainloop()
